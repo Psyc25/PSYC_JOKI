@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSYC JOKI - Joki Tugas & Layanan Coding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1d4ed8;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Tab Animation */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mobile Menu Animation */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Button Effects */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Card Effects */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-3px);
+        }
+        
+        /* Testimonial Card */
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-3px);
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* Portfolio Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #eab308;
+        }
+        
+        /* Portfolio Preview */
+        .portfolio-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-preview:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-preview img {
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-preview:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-preview:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        
+        .portfolio-link:hover {
+            background: rgba(37, 99, 235, 1);
+            transform: translateX(5px);
+        }
+        
+        /* Blog Card */
+        .blog-card {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Mobile Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 md:hidden">
+        <div class="flex items-center justify-between p-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-yellow-400 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">PJ</span>
+                </div>
+                <span class="font-bold text-gray-900">PSYC JOKI</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <i id="menu-icon" class="fas fa-bars text-gray-700"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white shadow-xl z-50">
+            <div class="p-4">
+                <button onclick="toggleMobileMenu()" class="mb-6 p-2 rounded-lg hover:bg-gray-100">
+                    <i class="fas fa-times text-gray-700"></i>
+                </button>
+                <div class="flex flex-col gap-2">
+                    <button onclick="scrollToSection('layanan'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-code mr-3 text-blue-600"></i>Layanan
+                    </button>
+                    <button onclick="scrollToSection('portfolio'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-briefcase mr-3 text-purple-600"></i>Portfolio
+                    </button>
+                    <button onclick="scrollToSection('blog'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-blog mr-3 text-green-600"></i>Blog
+                    </button>
+                    <button onclick="scrollToSection('testimoni'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-star mr-3 text-yellow-500"></i>Testimoni
+                    </button>
+                    <button onclick="scrollToSection('cara-order'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-shopping-cart mr-3 text-green-500"></i>Cara Order
+                    </button>
+                    <a href="https://wa.me/6289654671279?text=Halo%20PSYC%20JOKI,%20saya%20mau%20order%20jasa" 
+                       target="_blank" 
+                       class="inline-flex items-center gap-2 btn-whatsapp text-white font-bold py-3 px-4 rounded-lg mt-4">
+                        <i class="fab fa-whatsapp"></i>
+                        Order WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 to-yellow-50 pt-16 md:pt-20">
+        <!-- Floating Background Elements -->
+        <div class="floating-element top-10 left-10 w-32 h-32 bg-blue-200"></div>
+        <div class="floating-element top-20 right-20 w-40 h-40 bg-yellow-200" style="animation-delay: 2s;"></div>
+        <div class="floating-element bottom-10 left-1/3 w-36 h-36 bg-blue-300" style="animation-delay: 4s;"></div>
+        
+        <div class="relative container mx-auto px-4 py-12 md:py-20 lg:py-32">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 hover-lift">
+                    <i class="fas fa-bolt"></i>
+                    Solusi Cepat & Terpercaya
+                </div>
+                
+                <!-- Profile Section -->
+                <div class="mb-8">
+                    <div class="relative inline-block">
+                        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-6 border-white shadow-xl hover-lift">
+                            <!-- FOTO PROFIL ANDA - GANTI DENGAN FOTO JPG -->
+                            <img src="images/profile-photo.jpg" 
+                                 alt="PSYC JOKI Owner"
+                                 class="w-full h-full object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                            <div class="w-full h-full bg-gradient-to-r from-blue-600 to-yellow-400 rounded-full flex items-center justify-center" style="display:none;">
+                                <i class="fas fa-user text-white text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 right-3 w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">Halo, Joki lah cok</h2>
+                    <p class="text-gray-600">Professional Task Helper & Coding Expert</p>
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    JOKI TUGAS & LAYANAN CODING
+                    <span class="block text-blue-600 text-3xl md:text-5xl">Harga Pelajar, Hasil Profesional</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Solusi cepat buat tugas yang bikin stres dan nggak sempat dikerjain.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="https://wa.me/6289654671279?text=Halo%20PSYC%20JOKI,%20saya%20mau%20order%20jasa" 
+                       target="_blank" 
+                       class="inline-flex items-center justify-center gap-2 btn-whatsapp text-white font-bold py-4 px-8 rounded-full text-lg transition-all hover-lift">
+                        <i class="fab fa-whatsapp"></i>
+                        Order via WhatsApp
+                    </a>
+                    <button onclick="scrollToSection('layanan')" 
+                            class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all hover-lift">
+                        Lihat Layanan
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Visual Elements -->
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-2xl p-8 border-4 border-blue-600 hover-lift">
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center float-animation">
+                                <span class="text-2xl">😰</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-blue-100 rounded-2xl p-4 relative">
+                                    <div class="absolute -left-2 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                                    <p class="text-gray-800 font-medium text-lg">Tugas numpuk? Deadline mepet? Bingung mulai dari mana?</p>
+                                </div>
+                            </div>
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center float-animation" style="animation-delay: 1s;">
+                                <span class="text-2xl">😎</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-600 text-lg font-medium">Tenang, PSYC JOKI solusinya! 💪</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Navigation -->
+    <section class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center gap-2 py-4 overflow-x-auto">
+                <button onclick="showTab('coding')" 
+                        id="tab-coding"
+                        class="tab-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all whitespace-nowrap bg-blue-600 text-white">
+                    <i class="fas fa-code"></i>
+                    <span class="hidden sm:inline">Coding & Web</span>
+                    <span class="sm:hidden">Coding</span>
+                </button>
+                <button onclick="showTab('tugas')" 
+                        id="tab-tugas"
+                        class="tab-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="hidden sm:inline">Tugas Kampus</span>
+                    <span class="sm:hidden">Tugas</span>
+                </button>
+                <button onclick="showTab('kreatif')" 
+                        id="tab-kreatif"
+                        class="tab-btn flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    <i class="fas fa-palette"></i>
+                    <span class="hidden sm:inline">Kreatif</span>
+                    <span class="sm:hidden">Kreatif</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="layanan" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Kategori Layanan Kami</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Berbagai layanan untuk memenuhi kebutuhan akademik dan profesional kamu
+                </p>
+            </div>
+
+            <!-- Coding & Web Services -->
+            <div id="coding" class="tab-content active">
+                <div class="max-w-6xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-blue-600">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-code text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Layanan Coding & Web</h3>
+                        </div>
+                        
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Pembuatan Website</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Portfolio Web</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Blog Pribadi</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Project Web Kampus</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Debugging / Fix Error</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Aplikasi Web Custom</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
+                            <h4 class="text-xl font-bold mb-4">Privilege Harga</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Basic</h5>
+                                    <p class="text-2xl font-bold mb-1">Mulai Rp30.000</p>
+                                    <p class="text-sm opacity-90">Gratis Revisi 1x</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Medium</h5>
+                                    <p class="text-2xl font-bold mb-1">Mulai Rp75.000</p>
+                                    <p class="text-sm opacity-90">Gratis Revisi 2x</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Full Project</h5>
+                                    <p class="text-2xl font-bold mb-1">Mulai Rp150.000</p>
+                                    <p class="text-sm opacity-90">Gratis Revisi 3x</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tugas Kampus Services -->
+            <div id="tugas" class="tab-content">
+                <div class="max-w-6xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-yellow-400">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <i class="fas fa-file-alt text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Layanan Tugas Kampus</h3>
+                        </div>
+                        
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Makalah</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Proposal</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Laporan</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Modul</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Essay</h4>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-yellow-50 to-blue-50 rounded-2xl p-6 border-2 border-yellow-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-sm"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Presentasi (PPT Profesional)</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-6 text-white">
+                            <h4 class="text-xl font-bold mb-4">Privilege Harga</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Makalah/Proposal</h5>
+                                    <p class="text-2xl font-bold mb-1">Rp30.000 - Rp100.000</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Laporan/Modul</h5>
+                                    <p class="text-2xl font-bold mb-1">Rp35.000 - Rp80.000</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">PPT Premium</h5>
+                                    <p class="text-2xl font-bold mb-1">Rp30.000 - Rp60.000</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Bonus</h5>
+                                    <p class="text-xl font-bold">Gratis Revisi 2x</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kreatif & Lainnya Services -->
+            <div id="kreatif" class="tab-content">
+                <div class="max-w-6xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-purple-400">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center">
+                                <i class="fas fa-palette text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Layanan Kreatif & Pendukung</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                            <div class="service-card bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
+                                <div class="flex flex-col items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-video text-white"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 text-center">Editing Video</h4>
+                                    <p class="text-xs text-gray-600 text-center">Video editing, content creation</p>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
+                                <div class="flex flex-col items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-palette text-white"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 text-center">Jasa Desain</h4>
+                                    <p class="text-xs text-gray-600 text-center">Poster, Feed IG, Logo</p>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
+                                <div class="flex flex-col items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-language text-white"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 text-center">Jasa Terjemahan</h4>
+                                    <p class="text-xs text-gray-600 text-center">Inggris-Indonesia, dll</p>
+                                </div>
+                            </div>
+                            <div class="service-card bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
+                                <div class="flex flex-col items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-keyboard text-white"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 text-center">Jasa Ketik</h4>
+                                    <p class="text-xs text-gray-600 text-center">Menulis ulang dokumen</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl p-6 text-white">
+                            <h4 class="text-xl font-bold mb-4">Privilege Harga</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Desain</h5>
+                                    <p class="text-2xl font-bold mb-1">Rp25.000 - Rp80.000</p>
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-4">
+                                    <h5 class="font-bold text-lg mb-2">Editing Video</h5>
+                                    <p class="text-2xl font-bold mb-1">Rp20.000 - Rp70.000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Kenapa Memilih PSYC JOKI?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Alasan kenapa ribuan pelajar mempercayakan tugasnya kepada kami
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Harga Pelajar</h3>
+                    <p class="text-gray-600">Terjangkau untuk kantong pelajar, kualitas tetap premium</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pengerjaan Cepat</h3>
+                    <p class="text-gray-600">Deadline mepet? Kami selesaikan dengan tepat waktu</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hasil Rapi & Profesional</h3>
+                    <p class="text-gray-600">Kerjaan rapi, format sesuai, bebas plagiarisme</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Bisa Request Custom</h3>
+                    <p class="text-gray-600">Kebutuhan spesial? Kami siap bantu custom</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Support 24/7</h3>
+                    <p class="text-gray-600">Tim kami siap membantu kapanpun kamu butuhkan, kecuali kiamat</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-check-circle text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Garansi Kepuasan</h3>
+                    <p class="text-gray-600">Tidak puas? Kami revisi sampai kamu puas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimoni" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Apa Kata Mereka?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Testimoni dari pelanggan yang puas dengan layanan kami
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 1 -->
+                                <img src="images/testimoni1.jpg" 
+                                     alt="Andi Pratama"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">AP</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Andi Pratama</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"Website kampus gw jadi dengan hasil yang bagus! Harga terjangkau, pengerjaan cepat. Recommended!"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 2 -->
+                                <img src="images/testimoni2.jpg" 
+                                     alt="Siti Nurhaliza"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">SN</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Siti Nurhaliza</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"Makalah aku selesai tepat waktu dan hasilnya rapi. Dosen kasih nilai A. Terima kasih PSYC JOKI!"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 3 -->
+                                <img src="images/testimoni3.jpg" 
+                                     alt="Budi Santoso"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">BS</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Budi Santoso</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"PPT presentasi gw jadi lebih profesional. Desain keren, konten jelas. admin juga ramah."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 4 -->
+                                <img src="images/testimoni4.jpg" 
+                                     alt="Rina Wijaya"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">RW</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Rina Wijaya</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"Coding project aku dibantu sampe selesai. Error nya di-fix semua. Worth it banget makasih mas psyc!"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 5 -->
+                                <img src="images/testimoni5.jpg" 
+                                     alt="Ahmad Fauzi"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">AF</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Ahmad Fauzi</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"Hasil laporan gw cuman revisi 1x gilee. Format sudah sesuai standar. Puas sekali!"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-200">
+                                <!-- FOTO TESTIMONI 6 -->
+                                <img src="images/testimoni6.jpg" 
+                                     alt="Maya Putri"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <!-- FALLBACK JIKA FOTO TIDAK ADA -->
+                                <div class="w-full h-full bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display:none;">MP</div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Maya Putri</h4>
+                            <div class="flex gap-0.5">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -top-2 -left-2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-blue-100 border-b-8 border-b-transparent"></div>
+                        <div class="bg-blue-50 rounded-xl p-4">
+                            <p class="text-gray-700 italic text-sm">"Desain poster buat kampus hasilnya keren! bocah pada kagum. Harga okelah ya!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Order -->
+    <section id="cara-order" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Cara Order Mudah</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    4 langkah simple untuk menyelesaikan tugas kamu
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                                1
+                            </div>
+                            <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-600 to-yellow-400"></div>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Kirim Tugas</h3>
+                        <p class="text-gray-600 text-sm">Kirim detail tugas via WhatsApp</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                                2
+                            </div>
+                            <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-600 to-yellow-400"></div>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Jelaskan Kebutuhan</h3>
+                        <p class="text-gray-600 text-sm">Diskusi detail requirements dan deadline</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                                3
+                            </div>
+                            <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-600 to-yellow-400"></div>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Tentukan Harga</h3>
+                        <p class="text-gray-600 text-sm">Kesepakatan harga dan metode pembayaran</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                                4
+                            </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Pengerjaan Dimulai</h3>
+                        <p class="text-gray-600 text-sm">Tim kami mulai kerjakan tugas kamu</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="https://wa.me/6289654671279?text=Halo%20PSYC%20JOKI,%20saya%20mau%20order%20jasa" 
+                       target="_blank" 
+                       class="inline-flex items-center gap-2 btn-whatsapp text-white font-bold py-4 px-8 rounded-full text-lg transition-all hover-lift">
+                        Order Sekarang
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-4">PSYC JOKI</h3>
+                <p class="text-gray-400 mb-6">Joki Tugas & Layanan Coding Terpercaya</p>
+                
+                <div class="flex justify-center gap-4 mb-8">
+                    <a href="https://wa.me/6289654671279" 
+                       target="_blank" 
+                       class="w-12 h-12 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors hover-lift">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="https://instagram.com/psyc.araaa" 
+                       target="_blank" 
+                       class="w-12 h-12 bg-pink-500 hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors hover-lift">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="mailto:salvanando.123@gmail.com" 
+                       class="w-12 h-12 bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors hover-lift">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                    <a href="tel:+6289654671279" 
+                       class="w-12 h-12 bg-yellow-500 hover:bg-yellow-600 rounded-full flex items-center justify-center transition-colors hover-lift">
+                        <i class="fas fa-phone text-xl"></i>
+                    </a>
+                </div>
+                
+                <div class="border-t border-gray-800 pt-6">
+                    <p class="text-gray-400 text-sm">
+                        Layanan cepat, aman, dan terpercaya. © 2024 PSYC JOKI. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Portfolio Images -->
+    <div id="portfolioModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Portfolio Image" class="max-w-full max-h-full rounded-lg">
+            <div class="text-center mt-4">
+                <a id="modalLink" href="" target="_blank" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-all">
+                    <i class="fas fa-external-link-alt"></i>
+                    Kunjungi Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            
+            // Highlight active button
+            const activeBtn = document.getElementById('tab-' + tabName);
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+            activeBtn.classList.add('bg-blue-600', 'text-white');
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            menu.classList.toggle('active');
+            
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Modal functionality
+        function openModal(imageId, websiteUrl) {
+            const modal = document.getElementById('portfolioModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalLink = document.getElementById('modalLink');
+            
+            // Set image source
+            modalImage.src = `images/${imageId}.jpg`;
+            modalLink.href = websiteUrl;
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('portfolioModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('portfolioModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const menuButton = event.target.closest('button');
+            
+            if (!menu.contains(event.target) && !menuButton && menu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
